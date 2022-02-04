@@ -24,10 +24,12 @@
     <None Remove="QueryHandlers\" />
     <None Remove="CommandHandlers\" />
     <None Remove="Repositories\" />
+    <None Remove="Requests\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="QueryHandlers\" />
     <Folder Include="CommandHandlers\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Requests\" />
   </ItemGroup>
 </Project>

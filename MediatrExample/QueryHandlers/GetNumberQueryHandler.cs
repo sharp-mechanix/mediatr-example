@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using MediatrExample.Repositories;
 
 namespace MediatrExample.QueryHandlers;
 
@@ -10,11 +11,12 @@ public class GetNumberQueryHandler : IRequestHandler<GetNumberQuery, int>
 {
     private readonly ILogger<GetNumberQueryHandler> _logger;
 
-    private static int _increment = 420;
+    private readonly IRepository<int> _repository;
 
-    public GetNumberQueryHandler(ILogger<GetNumberQueryHandler> logger)
+    public GetNumberQueryHandler(ILogger<GetNumberQueryHandler> logger, IRepository<int> repository)
     {
         _logger = logger;
+        _repository = repository;
     }
 
     /// <summary>
@@ -24,6 +26,8 @@ public class GetNumberQueryHandler : IRequestHandler<GetNumberQuery, int>
     {
         _logger.LogInformation("Triggered query handler");
 
-        return Task.FromResult(420 + request.Number);
+        var value = _repository.Get();
+
+        return Task.FromResult(value <= request.NotGreaterThan ? value : 0);
     }
 }

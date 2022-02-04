@@ -8,5 +8,5 @@ namespace MediatrExample.QueryHandlers;
 /// </summary>
 public record GetNumberQuery : IRequest<int>
 {
-	public int Number { get; init; }
+    public int NotGreaterThan { get; init; }
 }
