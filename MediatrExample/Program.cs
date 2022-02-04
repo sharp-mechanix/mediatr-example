@@ -9,8 +9,12 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// This is where the fun begins
 builder.Services.AddMediatR(typeof(Program));
+
 builder.Services.AddSingleton<NumberRepository>();
+builder.Services.AddSingleton<IRepository<int>>(sp => sp.GetRequiredService<NumberRepository>());
 
 var app = builder.Build();
 
